@@ -17,3 +17,140 @@ input:focus,textarea:focus,select:focus{outline:none!important;border-color:rgba
 .fixed.bottom-0{background:rgba(16,16,18,.78)!important;backdrop-filter:saturate(180%) blur(24px)!important;-webkit-backdrop-filter:saturate(180%) blur(24px)!important;border-top-color:rgba(255,255,255,.09)!important;padding-bottom:max(0px,env(safe-area-inset-bottom))}
 @media (max-width:640px){body{font-size:15px}.max-w-7xl{padding-left:16px!important;padding-right:16px!important}.fixed.bottom-0{padding-bottom:env(safe-area-inset-bottom)}header .h-16{height:60px!important}}
 @media (prefers-reduced-motion:no-preference){a,button{transition:transform .18s ease,opacity .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease}img{transition:opacity .2s ease,transform .25s ease}}
+
+/* HRRY iOS UI/UX layer */
+:root{
+  --hrry-bg:#07090d;
+  --hrry-card:rgba(255,255,255,.055);
+  --hrry-card-strong:rgba(255,255,255,.075);
+  --hrry-line:rgba(255,255,255,.09);
+  --hrry-text:#f7f8fa;
+  --hrry-muted:#8f96a3;
+  --hrry-accent:#0a84ff;
+}
+html{background:var(--hrry-bg);scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(700px 420px at 50% -120px,rgba(10,132,255,.12),transparent 65%),
+    var(--hrry-bg)!important;
+  -webkit-tap-highlight-color:transparent;
+}
+button,a,[role="button"]{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
+img{image-rendering:auto}
+*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.12) transparent}
+
+/* Softer iOS-like surfaces */
+.rounded-2xl,.rounded-3xl,.rounded-xl{
+  border-color:rgba(255,255,255,.075)!important;
+  box-shadow:0 12px 38px rgba(0,0,0,.16);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.bg-\[\#15171C\],.bg-\[\#15171C\]\/90,.bg-\[\#15171C\]\/80{
+  background:var(--hrry-card)!important;
+}
+
+/* Course cards: image first, little text, large touch target */
+[class*="aspect-video"] img{transition:transform .45s cubic-bezier(.22,1,.36,1)}
+a:hover [class*="aspect-video"] img{transform:scale(1.035)}
+@media(max-width:640px){
+  main{padding-bottom:calc(84px + env(safe-area-inset-bottom))!important}
+  h1{letter-spacing:-.035em}
+  h2,h3{letter-spacing:-.025em}
+  .animate-fade-in{animation-duration:.28s!important}
+}
+
+/* PLAYER: make the lesson page feel like a dedicated media app */
+body.hrry-player-mode main{
+  padding-bottom:0!important;
+}
+body.hrry-player-mode main>div{
+  max-width:100%!important;
+}
+body.hrry-player-mode .hrry-player-shell{
+  min-height:calc(100svh - 64px);
+}
+body.hrry-player-mode .hrry-player-video{
+  border-radius:0!important;
+}
+@media(max-width:767px){
+  body.hrry-player-mode .hrry-player-shell{
+    padding:0!important;
+    min-height:100svh;
+  }
+  body.hrry-player-mode .hrry-player-video{
+    width:100vw!important;
+    margin-left:calc(50% - 50vw)!important;
+    box-shadow:none!important;
+  }
+  body.hrry-player-mode .hrry-player-video [class*="aspect-video"]{
+    border-radius:0!important;
+    border-left:0!important;
+    border-right:0!important;
+  }
+  body.hrry-player-mode .hrry-player-sidebar{
+    margin-top:10px;
+    padding:12px!important;
+    border-radius:28px!important;
+  }
+}
+
+/* Large media controls / cleaner player */
+.hrry-player-video video{
+  background:#000!important;
+}
+.hrry-player-video button{
+  min-height:40px;
+}
+.hrry-player-sidebar{
+  border-radius:28px!important;
+}
+
+/* Reduce visual noise: descriptions are secondary on small screens */
+@media(max-width:640px){
+  body.hrry-player-mode .hrry-secondary-text{
+    display:none!important;
+  }
+}
+
+/* iOS-style bottom nav */
+@supports(padding:max(0px)){
+  nav.fixed, [class*="fixed"][class*="bottom-"]{
+    padding-bottom:max(8px,env(safe-area-inset-bottom))!important;
+  }
+}
+
+/* Prevent accidental text selection on app chrome */
+header,nav,button,.hrry-player-sidebar{
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+/* Smooth page entry */
+@keyframes hrryPageIn{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+main{animation:hrryPageIn .32s ease-out both}
+
+/* Dedicated player route: one focused video, minimal distractions */
+@media(max-width:1023px){
+  body.hrry-player-mode [class*="lg:col-span-8"]{width:100%!important}
+}
+@media(max-width:767px){
+  body.hrry-player-mode [class*="lg:col-span-4"]{
+    margin-top:14px!important;
+  }
+  body.hrry-player-mode [class*="lg:col-span-8"]{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  body.hrry-player-mode [class*="lg:col-span-8"] > *:first-child{
+    border-radius:0!important;
+  }
+  body.hrry-player-mode [class*="lg:col-span-4"]{
+    max-height:44vh;
+    overflow:auto;
+  }
+}
