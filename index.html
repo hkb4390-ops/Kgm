@@ -18,7 +18,20 @@
 
     <script type="module" src="js/index-pfhqgXXN.js"></script>
     <link rel="stylesheet" crossorigin="" href="css/index-DBbway7t.css">
-  </head>
+  <script>
+(function(){
+  function sync(){
+    document.body.classList.toggle('hrry-player-mode', /^\/player\//.test(location.pathname));
+  }
+  sync();
+  ['pushState','replaceState'].forEach(function(k){
+    var fn=history[k];
+    history[k]=function(){var r=fn.apply(this,arguments);sync();return r};
+  });
+  addEventListener('popstate',sync);
+})();
+</script>
+</head>
   <body class="bg-[#0E0F13] text-gray-100 antialiased font-sans selection:bg-blue-500 selection:text-white">
     <div id="root"></div>
 </body></html>
