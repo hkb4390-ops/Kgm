@@ -154,3 +154,251 @@ main{animation:hrryPageIn .32s ease-out both}
     overflow:auto;
   }
 }
+
+/* =========================================================
+   HRRY • iOS 2026 LIQUID GLASS UI — FINAL VISUAL LAYER
+   Logic/API/player behaviour intentionally untouched.
+   ========================================================= */
+:root{
+  --ios26-blue:#0a84ff;
+  --ios26-blue2:#147ef5;
+  --ios26-bg:#05070b;
+  --ios26-surface:rgba(255,255,255,.055);
+  --ios26-surface2:rgba(255,255,255,.085);
+  --ios26-line:rgba(255,255,255,.105);
+  --ios26-soft:rgba(255,255,255,.06);
+  --ios26-ease:cubic-bezier(.22,1,.36,1);
+}
+
+html,body{
+  background:
+    radial-gradient(700px 420px at 15% -10%,rgba(10,132,255,.14),transparent 62%),
+    radial-gradient(620px 420px at 100% 18%,rgba(76,110,255,.08),transparent 62%),
+    #05070b!important;
+}
+body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif!important}
+h1,h2,h3,h4,h5,h6,.font-heading{font-family:'Outfit',-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif!important}
+
+/* Soft ambient glass atmosphere */
+#root{position:relative;isolation:isolate}
+#root:before,#root:after{
+  content:"";position:fixed;z-index:-1;pointer-events:none;border-radius:999px;filter:blur(70px);opacity:.28
+}
+#root:before{width:280px;height:280px;left:-130px;top:18%;background:#0a84ff}
+#root:after{width:240px;height:240px;right:-120px;top:52%;background:#4d6fff}
+
+/* Header / navigation = translucent iOS bar */
+header{
+  background:rgba(8,10,14,.64)!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  backdrop-filter:saturate(180%) blur(30px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(30px)!important;
+  box-shadow:0 8px 30px rgba(0,0,0,.12)!important;
+}
+header a,header button{transition:all .35s var(--ios26-ease)!important}
+header a:hover,header button:hover{background:rgba(255,255,255,.065)!important}
+
+/* Universal premium glass cards */
+.rounded-xl,.rounded-2xl,.rounded-3xl{
+  border-color:var(--ios26-line)!important;
+  background-color:var(--ios26-surface)!important;
+  box-shadow:0 16px 55px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.045)!important;
+  backdrop-filter:saturate(165%) blur(24px)!important;
+  -webkit-backdrop-filter:saturate(165%) blur(24px)!important;
+  transition:transform .42s var(--ios26-ease),border-color .35s ease,box-shadow .42s ease,background-color .35s ease!important;
+}
+.group.rounded-xl:hover,.group.rounded-2xl:hover,.group.rounded-3xl:hover{
+  border-color:rgba(10,132,255,.25)!important;
+  box-shadow:0 20px 65px rgba(0,0,0,.24),0 0 0 1px rgba(10,132,255,.04) inset!important;
+}
+
+/* Remove old heavy yellow/amber visual language */
+[class*="bg-blue-600"]{background:linear-gradient(135deg,#0a84ff,#147ef5)!important;color:#fff!important}
+[class*="hover:bg-blue-500"]:hover{background:linear-gradient(135deg,#2994ff,#0a84ff)!important}
+[class*="text-blue-400"],[class*="text-blue-300"],[class*="text-blue-200"]{color:#4da3ff!important}
+[class*="border-blue-500"],[class*="border-blue-400"]{border-color:rgba(10,132,255,.28)!important}
+[class*="bg-amber-500"]{background:rgba(10,132,255,.9)!important;color:#fff!important}
+[class*="text-amber-400"],[class*="text-amber-300"]{color:#72b7ff!important}
+[class*="bg-emerald-500"]{background:rgba(48,209,88,.88)!important}
+
+/* Buttons: tactile iOS motion */
+button,a,[role="button"]{transition:transform .28s var(--ios26-ease),background .28s ease,border-color .28s ease,box-shadow .28s ease,opacity .2s ease!important}
+button:hover,a:hover,[role="button"]:hover{transform:translateY(-1px)}
+button:active,a:active,[role="button"]:active{transform:scale(.965)!important}
+
+/* Inputs/search */
+input,textarea,select{
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  color:#fff!important;
+  backdrop-filter:blur(22px)!important;
+  -webkit-backdrop-filter:blur(22px)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 30px rgba(0,0,0,.08)!important;
+}
+input::placeholder,textarea::placeholder{color:#737b88!important}
+input:focus,textarea:focus,select:focus{
+  border-color:rgba(10,132,255,.65)!important;
+  box-shadow:0 0 0 4px rgba(10,132,255,.12),0 10px 35px rgba(0,0,0,.15)!important;
+}
+
+/* Fixed 16:9 media/banner rule — never allow oversized media blocks */
+[class*="aspect-video"]{
+  aspect-ratio:16/9!important;
+  width:100%;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+[class*="aspect-video"]>img,[class*="aspect-video"]>video,[class*="aspect-video"]>iframe{
+  width:100%!important;height:100%!important;object-fit:cover!important;
+}
+
+/* Course thumbnail/banner glass frame */
+[class*="aspect-video"] img{transition:transform .7s var(--ios26-ease),filter .5s ease!important}
+.group:hover [class*="aspect-video"] img{transform:scale(1.035);filter:saturate(1.06)!important}
+
+/* Course hero image stays strictly 16:9 */
+.max-w-5xl [class*="aspect-video"]{max-width:360px!important;flex:none!important}
+@media(max-width:767px){.max-w-5xl [class*="aspect-video"]{max-width:100%!important}}
+
+/* Page transitions */
+main{animation:hrryIOSPageIn .5s var(--ios26-ease) both!important}
+@keyframes hrryIOSPageIn{from{opacity:0;transform:translateY(12px) scale(.992);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+
+/* =========================================================
+   PREMIUM VIDEO PLAYER
+   ========================================================= */
+body.hrry-player-mode{background:#020307!important}
+body.hrry-player-mode main{animation:hrryPlayerIn .55s var(--ios26-ease) both!important}
+@keyframes hrryPlayerIn{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Main player shell: target the existing player without touching React */
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black{
+  position:relative!important;
+  background:#000!important;
+  aspect-ratio:16/9!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  border-radius:26px!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.025) inset!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  transform:translateZ(0);
+}
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black:after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:5;
+  border-radius:inherit;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09),inset 0 -35px 80px rgba(0,0,0,.2);
+}
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black video{
+  background:#000!important;
+  transition:filter .35s ease,transform .55s var(--ios26-ease)!important;
+}
+
+/* Player top title pill */
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black [data-controls] .backdrop-blur-md{
+  background:rgba(12,14,18,.58)!important;
+  border-color:rgba(255,255,255,.13)!important;
+  backdrop-filter:saturate(180%) blur(22px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(22px)!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.2)!important;
+}
+
+/* Player controls become floating glass controls */
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black [data-controls] button{
+  border:1px solid rgba(255,255,255,.08)!important;
+  background:rgba(255,255,255,.055)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+  border-radius:13px!important;
+}
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black [data-controls] button:hover{
+  background:rgba(255,255,255,.13)!important;
+  border-color:rgba(255,255,255,.16)!important;
+  box-shadow:0 8px 25px rgba(0,0,0,.2)!important;
+}
+/* Main play button */
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black>div.absolute.inset-0.z-10 button{
+  width:68px!important;height:68px!important;padding:0!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:rgba(10,132,255,.94)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  box-shadow:0 12px 42px rgba(10,132,255,.38),inset 0 1px 0 rgba(255,255,255,.25)!important;
+  animation:hrryPlayPulse 2.4s ease-in-out infinite;
+}
+@keyframes hrryPlayPulse{0%,100%{box-shadow:0 12px 42px rgba(10,132,255,.35),inset 0 1px 0 rgba(255,255,255,.22)}50%{box-shadow:0 14px 55px rgba(10,132,255,.55),0 0 0 10px rgba(10,132,255,.045),inset 0 1px 0 rgba(255,255,255,.28)}}
+
+/* Progress bar: thin iOS scrubber */
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black input[type="range"]{height:24px!important}
+body.hrry-player-mode .group.select-none.overflow-hidden.bg-black input[type="range"]+div{
+  width:12px!important;height:12px!important;border-radius:50%!important;
+  background:#fff!important;box-shadow:0 2px 10px rgba(0,0,0,.45)!important;
+}
+
+/* Loading spinner */
+body.hrry-player-mode .tb-spin{
+  width:48px!important;height:48px!important;
+  border-width:3px!important;
+  border-color:rgba(255,255,255,.16)!important;
+  border-top-color:#0a84ff!important;
+  box-shadow:0 0 35px rgba(10,132,255,.22);
+}
+
+/* Player info card below video */
+body.hrry-player-mode .lg\:col-span-8>div:last-child,
+body.hrry-player-mode .lg\:col-span-4>div{
+  background:rgba(255,255,255,.045)!important;
+  border-color:rgba(255,255,255,.09)!important;
+  backdrop-filter:saturate(170%) blur(24px)!important;
+  -webkit-backdrop-filter:saturate(170%) blur(24px)!important;
+}
+body.hrry-player-mode .lg\:col-span-4{position:sticky;top:82px}
+
+/* Class/Notes list rows */
+body.hrry-player-mode .lg\:col-span-4 .group,
+body.hrry-player-mode .lg\:col-span-4 [class*="rounded-2xl"]{
+  background:rgba(255,255,255,.045)!important;
+  border-color:rgba(255,255,255,.075)!important;
+}
+body.hrry-player-mode .lg\:col-span-4 .group:hover{
+  background:rgba(10,132,255,.085)!important;
+  border-color:rgba(10,132,255,.25)!important;
+  transform:translateX(2px)!important;
+}
+
+/* Bottom navigation / footer glass */
+footer,.fixed.bottom-0{
+  background:rgba(8,10,14,.68)!important;
+  border-color:rgba(255,255,255,.08)!important;
+  backdrop-filter:saturate(180%) blur(28px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(28px)!important;
+  box-shadow:0 -12px 45px rgba(0,0,0,.18)!important;
+}
+
+/* Mobile: edge-to-edge media but controlled 16:9 */
+@media(max-width:767px){
+  body.hrry-player-mode .group.select-none.overflow-hidden.bg-black{
+    width:100vw!important;
+    margin-left:calc(50% - 50vw)!important;
+    border-radius:0!important;
+    border-left:0!important;border-right:0!important;
+    box-shadow:none!important;
+  }
+  body.hrry-player-mode .lg\:col-span-4{position:static}
+  body.hrry-player-mode .group.select-none.overflow-hidden.bg-black>div.absolute.inset-0.z-10 button{width:62px!important;height:62px!important}
+  body.hrry-player-mode .lg\:col-span-8>div:last-child{border-radius:24px!important}
+}
+
+/* Extra-small screens */
+@media(max-width:420px){
+  body.hrry-player-mode .group.select-none.overflow-hidden.bg-black{aspect-ratio:16/9!important}
+  .rounded-3xl{border-radius:22px!important}
+  .rounded-2xl{border-radius:18px!important}
+}
+
+/* Reduced motion accessibility */
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
